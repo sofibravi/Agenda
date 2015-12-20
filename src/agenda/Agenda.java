@@ -6,6 +6,9 @@ public class Agenda {
         
     }
     
+    public String sofifea(){
+        return "te amo más mi solllll";
+    }
     public static void main(String[] args) {
 
         
