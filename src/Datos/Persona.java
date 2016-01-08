@@ -8,9 +8,13 @@ public class Persona {
    private String apellido;
    private Integer telefono;
    private Integer celular;
-   private String domicilio;
+   private String direccion;
    private String localidad;
    private Date cumpleaños;
+
+    public Persona() {
+    
+    }
 
     public String getNombre() {
         return nombre;
@@ -44,12 +48,12 @@ public class Persona {
         this.celular = celular;
     }
 
-    public String getDomicilio() {
-        return domicilio;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public String getLocalidad() {
@@ -68,12 +72,12 @@ public class Persona {
         this.cumpleaños = cumpleaños;
     }
 
-    public Persona(String nombre, String apellido, Integer telefono, Integer celular, String domicilio, String localidad, Date cumpleaños) {
+    public Persona(String nombre, String apellido, Integer telefono, Integer celular, String direccion, String localidad, Date cumpleaños) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.celular = celular;
-        this.domicilio = domicilio;
+        this.direccion = direccion;
         this.localidad = localidad;
         this.cumpleaños = cumpleaños;
     }

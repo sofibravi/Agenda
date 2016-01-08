@@ -5,6 +5,12 @@
  */
 package Interfaces;
 
+import Conexion.Controlador;
+import Datos.Persona;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Sofia
@@ -15,7 +21,23 @@ public class VerAgenda extends javax.swing.JFrame {
      * Creates new form VerAgenda
      */
     public VerAgenda() {
+        ArrayList<Persona> personas = Controlador.buscarPersonas();
         initComponents();
+        int fila = 0;
+		for (Persona persona : personas) {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                        modelo.addRow(new Object[]{"","","","","","",""});
+                        jTable1.setModel(modelo);
+                        jTable1.setValueAt(persona.getNombre(), fila, 0);
+			jTable1.setValueAt(persona.getApellido(), fila, 1);
+			jTable1.setValueAt(persona.getTelefono(), fila, 2);
+			jTable1.setValueAt(persona.getCelular(), fila, 3);
+			jTable1.setValueAt(persona.getDireccion(), fila, 4);
+                        jTable1.setValueAt(persona.getLocalidad(), fila, 5);
+                        jTable1.setValueAt(persona.getCumpleaños(), fila, 6);
+                        
+			fila += 1;
+		}
     }
 
     /**
@@ -40,10 +62,7 @@ public class VerAgenda extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Apellido", "Teléfono", "Celular", "Dirección", "Localidad", "Cumpleaños"
@@ -57,7 +76,17 @@ public class VerAgenda extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, 785, 386));
 
