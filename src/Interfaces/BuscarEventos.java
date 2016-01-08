@@ -83,10 +83,12 @@ public class BuscarEventos extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_delete.png"))); // NOI18N
         jButton4.setText("Eliminar");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 296, 120, 36));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 296, 140, 36));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_edit.png"))); // NOI18N
         jButton5.setText("Modificar");
         getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 296, 147, 36));
 
