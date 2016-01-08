@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Controlador {
     private static Connection conexion = ConexionDB.getConnection();
@@ -25,8 +26,8 @@ public class Controlador {
 
                 persona.setNombre(rs.getString("Nombre"));
                 persona.setApellido(rs.getString("Apellido"));
-                persona.setTelefono(rs.getInt("Telefono"));
-                persona.setCelular(rs.getInt("Celular"));
+                persona.setTelefono(rs.getString("Telefono"));
+                persona.setCelular(rs.getString("Celular"));
                 persona.setDireccion(rs.getString("Direccion"));
                 persona.setLocalidad(rs.getString("Localidad"));
                 persona.setCumpleaños(rs.getDate("Cumpleaños"));
@@ -42,5 +43,20 @@ public class Controlador {
 
     return personas;	
 
+    }
+    public static void guardarPersonas(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, Date cumpleaños){
+        String sql = "INSERT INTO tbpersona1 ("+" Nombre, Apellido, Telefono, Celular, Direccion, Localidad, Cumpleaños)"+" "
+                + "VALUES ('"+nombre+"','"+apellido+"','"+telefono+"','"+celular+"','"+direccion+"','"+localidad+"',"+cumpleaños+")";
+        
+    
+    try (
+        Statement stmt = conexion.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        ){
+        
+        
+         } catch (SQLException e) {
+        System.out.println(e.getSQLState());
+    } 
     }
     }

@@ -6,8 +6,8 @@ public class Persona {
 
    private String nombre;
    private String apellido;
-   private Integer telefono;
-   private Integer celular;
+   private String telefono;
+   private String celular;
    private String direccion;
    private String localidad;
    private Date cumpleaños;
@@ -32,19 +32,19 @@ public class Persona {
         this.apellido = apellido;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public Integer getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -72,7 +72,7 @@ public class Persona {
         this.cumpleaños = cumpleaños;
     }
 
-    public Persona(String nombre, String apellido, Integer telefono, Integer celular, String direccion, String localidad, Date cumpleaños) {
+    public Persona(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, Date cumpleaños) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
