@@ -5,6 +5,11 @@
  */
 package Interfaces;
 
+import Conexion.Controlador;
+import Datos.Persona;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sofia
@@ -16,10 +21,26 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
     /**
      * Creates new form ResultadosEliminarAgenda
      */
+    
+    
     public ResultadosEliminarAgenda(String buscarPor, String busqueda) {
-        this.buscarPor = buscarPor;
-        this.busqueda = busqueda;
+        ArrayList<Persona> personas = Controlador.buscarPersonas(buscarPor, busqueda);
         initComponents();
+        int fila = 0;
+		for (Persona persona : personas) {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                        modelo.addRow(new Object[]{"","","","","","",""});
+                        jTable1.setModel(modelo);
+                        jTable1.setValueAt(persona.getNombre(), fila, 0);
+			jTable1.setValueAt(persona.getApellido(), fila, 1);
+			jTable1.setValueAt(persona.getTelefono(), fila, 2);
+			jTable1.setValueAt(persona.getCelular(), fila, 3);
+			jTable1.setValueAt(persona.getDireccion(), fila, 4);
+                        jTable1.setValueAt(persona.getLocalidad(), fila, 5);
+                        jTable1.setValueAt(persona.getCumpleaños(), fila, 6);
+                        
+			fila += 1;
+		}
     }
 
     /**
@@ -32,7 +53,7 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -42,7 +63,7 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -61,7 +82,7 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, 689, 278));
 
@@ -93,8 +114,8 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 361, 175, 36));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo2.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 800, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,6 +143,6 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

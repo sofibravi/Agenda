@@ -1,19 +1,26 @@
 package Datos;
 
-import java.util.Date;
 
 public class Persona {
-
-   private String nombre;
-   private String apellido;
-   private String telefono;
-   private String celular;
-   private String direccion;
-   private String localidad;
-   private String cumpleaños;
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private String celular;
+    private String direccion;
+    private String localidad;
+    private String cumpleaños;
 
     public Persona() {
     
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

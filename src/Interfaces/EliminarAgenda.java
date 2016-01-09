@@ -49,6 +49,12 @@ public class EliminarAgenda extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Apellido", "Teléfono", "Celular", "Dirección", "Localidad", "Cumpleaños", " " }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 136, 100, -1));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 136, 165, -1));
 
         jButton1.setText("Buscar");
@@ -92,13 +98,17 @@ public class EliminarAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String buscarPor = jComboBox1.toString();
+        String buscarPor = (String) jComboBox1.getSelectedItem();
         String busqueda = jTextField1.getText();        
-        ResultadosEliminarAgenda eliminar = new ResultadosEliminarAgenda(busqueda, buscarPor);
+        ResultadosEliminarAgenda eliminar = new ResultadosEliminarAgenda(buscarPor, busqueda);
         eliminar.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

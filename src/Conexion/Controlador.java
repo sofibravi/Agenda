@@ -93,6 +93,18 @@ public class Controlador {
     return personas;	
 
     }
+    
+   public static void eliminarRegistros(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, String cumpleaños){
+    String sql = "DELETE FROM tbpersona1 WHERE Nombre = '"+nombre+"' AND Apellido = '"+apellido+"' AND Telefono = '"+telefono+"' AND Celular = '"+celular+"' AND Direccion = '"+direccion+"' AND Localidad = '"+localidad+"' AND Cumpleaños = '"+cumpleaños+"'";
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
+        System.out.println(e.getSQLState());
+    } 
+       }
+    
+    
     //----------------------------
     
     public static void registrosNuevos (String usuario, String contraseña){
