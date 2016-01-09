@@ -65,10 +65,7 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Apellido", "Teléfono", "Celular", "Dirección", "Localidad", "Cumpleaños"
@@ -82,7 +79,12 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, 689, 278));
 
@@ -121,7 +123,20 @@ public class ResultadosEliminarAgenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        int seleccion = jTable1.getSelectedRow();
+        if (seleccion >= 0){
+        String nombre = (String) jTable1.getValueAt(seleccion, 0);
+        String apellido = (String) jTable1.getValueAt(seleccion, 1);
+        String telefono =(String) jTable1.getValueAt(seleccion, 2);
+        String celular = (String) jTable1.getValueAt(seleccion, 3);
+        String direccion = (String) jTable1.getValueAt(seleccion, 4);
+        String localidad = (String) jTable1.getValueAt(seleccion, 5);
+        String cumpleaños = (String) jTable1.getValueAt(seleccion, 6);
+        Controlador.eliminarRegistros(nombre, apellido, telefono, celular, direccion, localidad, cumpleaños);
+        DefaultTableModel nuevoModelo = ((DefaultTableModel) jTable1.getModel());
+        nuevoModelo.removeRow(seleccion);
+        jTable1.setModel(nuevoModelo);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
