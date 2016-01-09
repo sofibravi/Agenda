@@ -62,7 +62,6 @@ public class registro extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 97, 142, -1));
 
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
@@ -109,10 +108,10 @@ public class registro extends javax.swing.JFrame {
         String contraseña;
         usuario = jTextField1.getText();
         contraseña = jPasswordField1.getText();
-        Controlador.buscarRegistros(usuario, contraseña);
+        if (Controlador.buscarRegistros(usuario, contraseña)){
         this.dispose();
         primerventana ventana=new primerventana();
-        ventana.setVisible(true);
+        ventana.setVisible(true);}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

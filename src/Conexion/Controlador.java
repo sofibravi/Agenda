@@ -108,35 +108,25 @@ public class Controlador {
     //-.-.-.-.-.-.-
     
     
-    public static ArrayList<Usuarios> buscarRegistros(String usuario, String contraseña){
-    ArrayList<Usuarios> registros = new ArrayList<>();
-    String sql = "Select * FROM tbregistro WHERE Usuario = '"+usuario+"' AND Contraseña = '"+contraseña+"'";
+    public static boolean buscarRegistros(String usuario, String contraseña){
+    Usuarios usu = new Usuarios();
     
-    try (
+    
+    try {
+        String sql = "Select * FROM tbregistro WHERE Usuario = '"+usuario+"'";
         Statement stmt = conexion.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
-        ) {
-
-            while (rs.next()) {
-
-                Usuarios usu= new Usuarios();
-
-                usu.setUsuario(rs.getString("Usuario"));
-                usu.setContraseña(rs.getString("Contraseña"));
-
-                registros.add(usu);
-
-
-    } 
-
+        while (rs.next()) {
+            usu.setUsuario(rs.getString("Usuario"));
+            usu.setContraseña(rs.getString("Contraseña"));
+        }
     } catch (SQLException e) {
         System.out.println(e.getSQLState());
-    } 
-
-    return registros;	
-
+        System.out.println(e.getErrorCode());
     }
-
-    
+    if (usuario.equals(usu.getUsuario()) && contraseña.equals(usu.getContraseña())){return true;}
+    else { //acá podes poner que salga alguna ventana de error
+        return false;}
+    }
 }
 

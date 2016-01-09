@@ -113,7 +113,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
         usuario = jTextField1.getText();
         contraseña = jPasswordField1.getText();
         nuevaContraseña = jPasswordField2.getText();
-        if( contraseña == nuevaContraseña){
+        if( contraseña.equals(nuevaContraseña)){
             Controlador.registrosNuevos(usuario, contraseña);
             this.dispose();
             registro registrar= new registro();
