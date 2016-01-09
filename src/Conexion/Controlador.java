@@ -218,7 +218,7 @@ public class Controlador {
     
      
     public static void eliminarEventos(String evento, String fecha){
-    String sql = "DELETE FROM tbpersona1 WHERE Evento = '"+evento+"' AND Fecha = '"+fecha+"'";
+    String sql = "DELETE FROM tbevento WHERE Evento = '"+evento+"' AND Fecha = '"+fecha+"'";
     try {
         Statement stmt = (Statement) conexion.createStatement();
         stmt.execute(sql);
