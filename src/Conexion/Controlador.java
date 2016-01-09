@@ -44,18 +44,16 @@ public class Controlador {
     return personas;	
 
     }
-    public static void guardarPersonas(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, Date cumpleaños){
-        String sql = "INSERT INTO tbpersona1 ("+" Nombre, Apellido, Telefono, Celular, Direccion, Localidad, Cumpleaños)"+" "
-                + "VALUES ('"+nombre+"','"+apellido+"','"+telefono+"','"+celular+"','"+direccion+"','"+localidad+"',"+cumpleaños+")";
+    public static void guardarPersonas(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, String cumpleaños){
+        String sql = "INSERT INTO tbpersona1 (Nombre, Apellido, Telefono, Celular, Direccion, Localidad, Cumpleaños) VALUES ('"+nombre+"', '"+apellido+"', '"+telefono+"', '"+celular+"', '"+direccion+"', '"+localidad+"', '"+cumpleaños+"')";
+        //String sql = "INSERT INTO tbpersona1 (Nombre, Apellido, Telefono, Celular, Direccion, Localidad, Cumpleaños)"+" "
+        //        + "VALUES ('"+nombre+"','"+apellido+"','"+telefono+"','"+celular+"','"+direccion+"','"+localidad+"',"+cumpleaños+")";
         
     
-    try (
-        Statement stmt = conexion.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
-        ){
-        
-        
-         } catch (SQLException e) {
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
         System.out.println(e.getSQLState());
     } 
     }

@@ -171,10 +171,10 @@ public class AgregarAgenda extends javax.swing.JFrame {
         DateFormat df = new SimpleDateFormat("dd MM yyyy", Locale.getDefault());
         try { 
             Date result = df.parse(cumpleaños);
-            Controlador.guardarPersonas(nombre, apellido, telefono, celular, direccion, localidad, result);
         
         } catch (ParseException ex) {}
-        
+        Controlador.guardarPersonas(nombre, apellido, telefono, celular, direccion, localidad, cumpleaños);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
