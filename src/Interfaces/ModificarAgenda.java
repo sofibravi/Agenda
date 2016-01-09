@@ -189,10 +189,14 @@ public class ModificarAgenda extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int seleccion = jTable1.getSelectedRow();
+        if (seleccion >= 0){
         Persona personaSeleccionada = personas.get(seleccion);
         String queCambiar = (String) jComboBox1.getSelectedItem();
         String cambio = jTextField2.getText();
+        int nroCambio = jComboBox1.getSelectedIndex();
+        jTable1.setValueAt(cambio, seleccion, nroCambio);
         Controlador.actualizarRegistros(personaSeleccionada, queCambiar, cambio);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
