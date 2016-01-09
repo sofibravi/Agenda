@@ -74,6 +74,7 @@ public class Controlador {
                 Persona persona = new Persona();
 
                 persona.setNombre(rs.getString("Nombre"));
+                persona.setId(rs.getInt("id"));
                 persona.setApellido(rs.getString("Apellido"));
                 persona.setTelefono(rs.getString("Telefono"));
                 persona.setCelular(rs.getString("Celular"));
@@ -103,6 +104,17 @@ public class Controlador {
         System.out.println(e.getSQLState());
     } 
        }
+   
+    public static void actualizarRegistros(Persona personaSeleccionada, String queCambiar, String cambio){
+        String sql = "UPDATE tbpersona1 SET "+queCambiar+" = '"+cambio+"' WHERE id = "+personaSeleccionada.getId()+"";
+
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
+        System.out.println(e.getSQLState());
+    } 
+    }
     
     
     //----------------------------
@@ -145,5 +157,8 @@ public class Controlador {
         
         return false;}
     }
+    
+    //---------------------------------------------------
+    
 }
 
