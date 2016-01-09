@@ -1,6 +1,7 @@
 package Conexion;
 
 import Datos.Persona;
+import Datos.Usuarios;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,9 +90,53 @@ public class Controlador {
 
     return personas;	
 
-    
-    
-    
     }
+    //----------------------------
+    
+    public static void registrosNuevos (String usuario, String contraseña){
+        String sql = "INSERT INTO tbregistro (Usuario, Contraseña) VALUES ('"+usuario+"', '"+contraseña+"')";
+   
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
+        System.out.println(e.getSQLState());
+    } 
+    }
+    
+    
+    //-.-.-.-.-.-.-
+    
+    
+    public static ArrayList<Usuarios> buscarRegistros(String usuario, String contraseña){
+    ArrayList<Usuarios> registros = new ArrayList<>();
+    String sql = "Select * FROM tbregistro WHERE Usuario = '"+usuario+"' AND Contraseña = '"+contraseña+"'";
+    
+    try (
+        Statement stmt = conexion.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        ) {
+
+            while (rs.next()) {
+
+                Usuarios usu= new Usuarios();
+
+                usu.setUsuario(rs.getString("Usuario"));
+                usu.setContraseña(rs.getString("Contraseña"));
+
+                registros.add(usu);
+
+
+    } 
+
+    } catch (SQLException e) {
+        System.out.println(e.getSQLState());
+    } 
+
+    return registros;	
+
+    }
+
+    
 }
 

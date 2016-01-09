@@ -1,13 +1,14 @@
 package agenda;
 
-import Interfaces.primerventana;
+import Interfaces.registro;
 
 
 public class Agenda {
     
     public static void main(String[] args) {
-            primerventana ventana = new primerventana();
-            ventana.setVisible(true);
+        
+        registro inicio= new registro();
+        inicio.setVisible(true);
     }
     
 }
