@@ -237,5 +237,15 @@ public class Controlador {
         System.out.println(e.getSQLState());
     } 
     }
+    public static void guardarEventos(String evento, String fecha){
+        String sql = "INSERT INTO tbevento (Evento, Fecha) VALUES ('"+evento+"', '"+fecha+"')";
+   
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
+        System.out.println(e.getSQLState());
+    } 
+    }
 }
 
