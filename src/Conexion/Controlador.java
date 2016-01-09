@@ -2,6 +2,8 @@ package Conexion;
 
 import Datos.Persona;
 import Datos.Usuarios;
+import Interfaces.ErrorIngreso;
+import Interfaces.registro;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -125,7 +127,10 @@ public class Controlador {
         System.out.println(e.getErrorCode());
     }
     if (usuario.equals(usu.getUsuario()) && contraseña.equals(usu.getContraseña())){return true;}
-    else { //acá podes poner que salga alguna ventana de error
+    else { 
+        ErrorIngreso error= new ErrorIngreso();
+        error.setVisible(true);
+        
         return false;}
     }
 }

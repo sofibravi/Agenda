@@ -109,7 +109,7 @@ public class registro extends javax.swing.JFrame {
         usuario = jTextField1.getText();
         contraseña = jPasswordField1.getText();
         if (Controlador.buscarRegistros(usuario, contraseña)){
-        this.dispose();
+            this.dispose();
         primerventana ventana=new primerventana();
         ventana.setVisible(true);}
     }//GEN-LAST:event_jButton2ActionPerformed
