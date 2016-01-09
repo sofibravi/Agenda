@@ -174,7 +174,9 @@ public class AgregarAgenda extends javax.swing.JFrame {
         
         } catch (ParseException ex) {}
         Controlador.guardarPersonas(nombre, apellido, telefono, celular, direccion, localidad, cumpleaños);
-
+        this.dispose();
+        AgregarExito exito = new AgregarExito();
+        exito.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
