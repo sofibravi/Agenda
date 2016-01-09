@@ -30,7 +30,7 @@ public class Controlador {
                 persona.setCelular(rs.getString("Celular"));
                 persona.setDireccion(rs.getString("Direccion"));
                 persona.setLocalidad(rs.getString("Localidad"));
-                persona.setCumpleaños(rs.getDate("Cumpleaños"));
+                persona.setCumpleaños(rs.getString("Cumpleaños"));
 
                 personas.add(persona);
 

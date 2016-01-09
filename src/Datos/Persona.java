@@ -10,7 +10,7 @@ public class Persona {
    private String celular;
    private String direccion;
    private String localidad;
-   private Date cumpleaños;
+   private String cumpleaños;
 
     public Persona() {
     
@@ -64,15 +64,15 @@ public class Persona {
         this.localidad = localidad;
     }
 
-    public Date getCumpleaños() {
+    public String getCumpleaños() {
         return cumpleaños;
     }
 
-    public void setCumpleaños(Date cumpleaños) {
+    public void setCumpleaños(String cumpleaños) {
         this.cumpleaños = cumpleaños;
     }
 
-    public Persona(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, Date cumpleaños) {
+    public Persona(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, String cumpleaños) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
