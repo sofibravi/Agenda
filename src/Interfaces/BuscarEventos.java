@@ -20,7 +20,7 @@ public class BuscarEventos extends javax.swing.JFrame {
      * Creates new form BuscarEventos
      */
     public BuscarEventos(String buscarPor, String busqueda) {
-        ArrayList<Eventos> eventos = Controlador.mostrarEventos(buscarPor, busqueda);
+        eventos = Controlador.mostrarEventos(buscarPor, busqueda);
                 
         initComponents();
         int fila = 0;

@@ -201,7 +201,7 @@ public class Controlador {
             while (rs.next()) {
                 
                 Eventos event = new Eventos();
-                
+                event.setId(rs.getInt("id"));
                 event.setEvento(rs.getString("Evento"));
                 event.setFecha(rs.getString("Fecha"));
 
