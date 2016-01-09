@@ -84,7 +84,7 @@ public class primerventana extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        Eventos evento= new Eventos();
+        EventosFechas evento= new EventosFechas();
         evento.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

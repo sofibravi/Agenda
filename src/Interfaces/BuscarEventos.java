@@ -5,17 +5,34 @@
  */
 package Interfaces;
 
+import Conexion.Controlador;
+import Datos.Eventos;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sofia
  */
 public class BuscarEventos extends javax.swing.JFrame {
-
+    ArrayList<Eventos> eventos;
     /**
      * Creates new form BuscarEventos
      */
-    public BuscarEventos() {
+    public BuscarEventos(String buscarPor, String busqueda) {
+        ArrayList<Eventos> eventos = Controlador.mostrarEventos(buscarPor, busqueda);
+                
         initComponents();
+        int fila = 0;
+		for (Eventos evento : eventos) {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                        modelo.addRow(new Object[]{"","","","","","",""});
+                        jTable1.setModel(modelo);
+                        jTable1.setValueAt(evento.getEvento(), fila, 0);
+			jTable1.setValueAt(evento.getFecha(), fila, 1);
+                        
+			fila += 1;
+		}
     }
 
     /**
@@ -34,7 +51,9 @@ public class BuscarEventos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -64,7 +83,7 @@ public class BuscarEventos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 582, 189));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 582, 100));
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,15 +104,40 @@ public class BuscarEventos extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_delete.png"))); // NOI18N
         jButton4.setText("Eliminar");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 296, 140, 36));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 140, 36));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/page_edit.png"))); // NOI18N
         jButton5.setText("Modificar");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 296, 147, 36));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 147, 36));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo2.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 0, 790, 430));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Evento", "Fecha" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 90, -1));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 150, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo2.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 0, 800, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,6 +152,38 @@ public class BuscarEventos extends javax.swing.JFrame {
         modificar.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         int seleccion = jTable1.getSelectedRow();
+        if (seleccion >= 0){
+        String evento = (String) jTable1.getValueAt(seleccion, 0);
+        String fecha = (String) jTable1.getValueAt(seleccion, 1);
+        Controlador.eliminarEventos(evento, fecha);
+        DefaultTableModel nuevoModelo = ((DefaultTableModel) jTable1.getModel());
+        nuevoModelo.removeRow(seleccion);
+        jTable1.setModel(nuevoModelo);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int seleccion = jTable1.getSelectedRow();
+        if (seleccion >= 0){
+        Eventos eventoSeleccionado = eventos.get(seleccion);
+        String queCambiar = (String) jComboBox1.getSelectedItem();
+        String cambio = jTextField1.getText();
+        int nroCambio = jComboBox1.getSelectedIndex();
+        jTable1.setValueAt(cambio, seleccion, nroCambio);
+        Controlador.actualizarEventos(eventoSeleccionado, queCambiar, cambio);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -115,9 +191,11 @@ public class BuscarEventos extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

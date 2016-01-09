@@ -5,6 +5,11 @@
  */
 package Interfaces;
 
+import Conexion.Controlador;
+import Datos.Eventos;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sofia
@@ -15,7 +20,19 @@ public class VerEventos extends javax.swing.JFrame {
      * Creates new form VerEventos
      */
     public VerEventos() {
+        ArrayList<Eventos> eventos = Controlador.mostrarEventos();
+                
         initComponents();
+        int fila = 0;
+		for (Eventos evento : eventos) {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                        modelo.addRow(new Object[]{"","","","","","",""});
+                        jTable1.setModel(modelo);
+                        jTable1.setValueAt(evento.getEvento(), fila, 0);
+			jTable1.setValueAt(evento.getFecha(), fila, 1);
+                        
+			fila += 1;
+		}
     }
 
     /**
@@ -88,7 +105,7 @@ public class VerEventos extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
-        Eventos eventos= new Eventos();
+        EventosFechas eventos= new EventosFechas();
         eventos.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

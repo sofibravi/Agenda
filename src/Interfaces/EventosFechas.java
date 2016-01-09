@@ -9,12 +9,12 @@ package Interfaces;
  *
  * @author Sofia
  */
-public class Eventos extends javax.swing.JFrame {
+public class EventosFechas extends javax.swing.JFrame {
 
     /**
      * Creates new form Eventos
      */
-    public Eventos() {
+    public EventosFechas() {
         initComponents();
     }
 
@@ -89,7 +89,7 @@ public class Eventos extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 179, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -160, 610, 480));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -160, 610, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

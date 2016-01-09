@@ -1,8 +1,10 @@
 package Conexion;
 
+import Datos.Eventos;
 import Datos.Persona;
 import Datos.Usuarios;
 import Interfaces.ErrorIngreso;
+import Interfaces.EventosFechas;
 import Interfaces.registro;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -160,5 +162,80 @@ public class Controlador {
     
     //---------------------------------------------------
     
+    public static ArrayList<Eventos> mostrarEventos(){
+    ArrayList<Eventos> evento = new ArrayList<>();
+    String sql = "Select * FROM tbevento";
+    
+    try (
+        Statement stmt = conexion.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        ) {
+
+            while (rs.next()) {
+                
+                Eventos event = new Eventos();
+                
+                event.setEvento(rs.getString("Evento"));
+                event.setFecha(rs.getString("Fecha"));
+
+                evento.add(event);
+    } 
+
+    } catch (SQLException e) {
+        System.out.println(e.getSQLState());
+    } 
+
+    return evento;	
+
+    }
+    
+    public static ArrayList<Eventos> mostrarEventos(String buscarPor, String busqueda){
+    ArrayList<Eventos> evento = new ArrayList<>();
+    String sql = "Select * FROM tbevento WHERE "+buscarPor+" = '"+busqueda+"'";
+    
+    try (
+        Statement stmt = conexion.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        ) {
+
+            while (rs.next()) {
+                
+                Eventos event = new Eventos();
+                
+                event.setEvento(rs.getString("Evento"));
+                event.setFecha(rs.getString("Fecha"));
+
+                evento.add(event);
+    } 
+
+    } catch (SQLException e) {
+        System.out.println(e.getSQLState());
+    } 
+
+    return evento;	
+
+    }
+    
+     
+    public static void eliminarEventos(String evento, String fecha){
+    String sql = "DELETE FROM tbpersona1 WHERE Evento = '"+evento+"' AND Fecha = '"+fecha+"'";
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
+        System.out.println(e.getSQLState());
+    } 
+       }
+    
+    public static void actualizarEventos(Eventos eventoSeleccionado, String queCambiar, String cambio){
+        String sql = "UPDATE tbevento SET "+queCambiar+" = '"+cambio+"' WHERE id = "+eventoSeleccionado.getId()+"";
+
+    try {
+        Statement stmt = (Statement) conexion.createStatement();
+        stmt.execute(sql);
+        } catch (SQLException e) {System.out.println(e.getErrorCode());
+        System.out.println(e.getSQLState());
+    } 
+    }
 }
 
