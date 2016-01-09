@@ -108,9 +108,9 @@ public class BuscarAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String buscarPor = jComboBox1.toString();
+        String buscarPor = (String) jComboBox1.getSelectedItem();
         String busqueda = jTextField1.getText();
-        ResultadoBuscarAgenda resultado = new ResultadoBuscarAgenda(busqueda, buscarPor);
+        ResultadoBuscarAgenda resultado = new ResultadoBuscarAgenda(buscarPor, busqueda);
         resultado.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed

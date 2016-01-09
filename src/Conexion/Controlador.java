@@ -59,7 +59,7 @@ public class Controlador {
     //----------------
     public static ArrayList<Persona> buscarPersonas(String buscarPor, String busqueda){
     ArrayList<Persona> personas = new ArrayList<>();
-    String sql = "Select * FROM tbpersona1 WHERE ('"+buscarPor+"') = ('"+busqueda+"')";
+    String sql = "Select * FROM tbpersona1 WHERE "+buscarPor+" = '"+busqueda+"'";
     
     try (
         Statement stmt = conexion.createStatement();
