@@ -5,21 +5,41 @@
  */
 package Interfaces;
 
+import Conexion.Controlador;
+import Datos.Persona;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sofia
  */
 public class ResultadoBuscarAgenda extends javax.swing.JFrame {
-    private String busqueda;
-    private String buscarPor;
+    //private String busqueda;
+    //private String buscarPor;
     /**
      * Creates new form ResultadoBuscarAgenda
      */
     public ResultadoBuscarAgenda(String buscarPor, String busqueda) {
-        this.buscarPor = buscarPor;
-        this.busqueda = busqueda;
+        ArrayList<Persona> personas = Controlador.buscarPersonas(buscarPor, busqueda);
         initComponents();
+        int fila = 0;
+		for (Persona persona : personas) {
+                        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                        modelo.addRow(new Object[]{"","","","","","",""});
+                        jTable1.setModel(modelo);
+                        jTable1.setValueAt(persona.getNombre(), fila, 0);
+			jTable1.setValueAt(persona.getApellido(), fila, 1);
+			jTable1.setValueAt(persona.getTelefono(), fila, 2);
+			jTable1.setValueAt(persona.getCelular(), fila, 3);
+			jTable1.setValueAt(persona.getDireccion(), fila, 4);
+                        jTable1.setValueAt(persona.getLocalidad(), fila, 5);
+                        jTable1.setValueAt(persona.getCumpleaños(), fila, 6);
+                        
+			fila += 1;
+		}
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

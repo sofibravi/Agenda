@@ -46,10 +46,7 @@ public class Controlador {
     }
     public static void guardarPersonas(String nombre, String apellido, String telefono, String celular, String direccion, String localidad, String cumpleaños){
         String sql = "INSERT INTO tbpersona1 (Nombre, Apellido, Telefono, Celular, Direccion, Localidad, Cumpleaños) VALUES ('"+nombre+"', '"+apellido+"', '"+telefono+"', '"+celular+"', '"+direccion+"', '"+localidad+"', '"+cumpleaños+"')";
-        //String sql = "INSERT INTO tbpersona1 (Nombre, Apellido, Telefono, Celular, Direccion, Localidad, Cumpleaños)"+" "
-        //        + "VALUES ('"+nombre+"','"+apellido+"','"+telefono+"','"+celular+"','"+direccion+"','"+localidad+"',"+cumpleaños+")";
-        
-    
+   
     try {
         Statement stmt = (Statement) conexion.createStatement();
         stmt.execute(sql);
@@ -57,4 +54,44 @@ public class Controlador {
         System.out.println(e.getSQLState());
     } 
     }
+    
+    
+    //----------------
+    public static ArrayList<Persona> buscarPersonas(String buscarPor, String busqueda){
+    ArrayList<Persona> personas = new ArrayList<>();
+    String sql = "Select * FROM tbpersona1 WHERE ('"+buscarPor+"') = ('"+busqueda+"')";
+    
+    try (
+        Statement stmt = conexion.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        ) {
+
+            while (rs.next()) {
+
+                Persona persona = new Persona();
+
+                persona.setNombre(rs.getString("Nombre"));
+                persona.setApellido(rs.getString("Apellido"));
+                persona.setTelefono(rs.getString("Telefono"));
+                persona.setCelular(rs.getString("Celular"));
+                persona.setDireccion(rs.getString("Direccion"));
+                persona.setLocalidad(rs.getString("Localidad"));
+                persona.setCumpleaños(rs.getString("Cumpleaños"));
+
+                personas.add(persona);
+
+
+    } 
+
+    } catch (SQLException e) {
+        System.out.println(e.getSQLState());
+    } 
+
+    return personas;	
+
+    
+    
+    
     }
+}
+
