@@ -64,7 +64,7 @@ public class Controlador {
     //----------------
     public static ArrayList<Persona> buscarPersonas(String buscarPor, String busqueda){
     ArrayList<Persona> personas = new ArrayList<>();
-    String sql = "Select * FROM tbpersona1 WHERE "+buscarPor+" = '"+busqueda+"'";
+    String sql = "Select * FROM tbpersona1 WHERE "+buscarPor+" LIKE '%"+busqueda+"%'";
     
     try (
         Statement stmt = conexion.createStatement();
@@ -191,7 +191,7 @@ public class Controlador {
     
     public static ArrayList<Eventos> mostrarEventos(String buscarPor, String busqueda){
     ArrayList<Eventos> evento = new ArrayList<>();
-    String sql = "Select * FROM tbevento WHERE "+buscarPor+" = '"+busqueda+"'";
+    String sql = "Select * FROM tbevento WHERE "+buscarPor+" LIKE '%"+busqueda+"%'";
     
     try (
         Statement stmt = conexion.createStatement();
